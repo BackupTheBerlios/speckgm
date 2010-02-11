@@ -1,0 +1,65 @@
+# -------------------------------------------------------------------------
+# These are configurable options:
+# -------------------------------------------------------------------------
+
+# C++ compiler 
+CXX = g++
+
+# Standard flags for C++ 
+CXXFLAGS ?= 
+
+# Standard preprocessor flags (common for CC and CXX) 
+CPPFLAGS ?= 
+
+# Standard linker flags 
+LDFLAGS ?= 
+
+# Location and arguments of wx-config script 
+WX_CONFIG ?= wx-config
+
+# C++ flags to use with wxWidgets code 
+WX_CXXFLAGS ?= `$(WX_CONFIG) --cxxflags`
+
+
+
+# -------------------------------------------------------------------------
+# Do not modify the rest of this file!
+# -------------------------------------------------------------------------
+
+### Variables: ###
+
+CPPDEPS = -MT$@ -MF`echo $@ | sed -e 's,\.o$$,.d,'` -MD -MP
+CXXFLAGS =  -I.  $(WX_CXXFLAGS) $(CPPFLAGS) $(CXXFLAGS)
+OBJECTS = fft.o speckgm.o
+
+### Conditionally set variables: ###
+
+
+
+### Targets: ###
+
+all: speckgm
+
+install: 
+
+uninstall: 
+
+clean: 
+	rm -f ./*.o
+	rm -f ./*.d
+	rm -f speckgm
+
+speckgm: $(OBJECTS)
+	$(CXX) -o $@ $(OBJECTS) `$(WX_CONFIG) --libs core,base` $(LDFLAGS)
+
+speckgm.o: ../src/speckgm.cpp
+	$(CXX) -c -o $@ $(CXXFLAGS) $(CPPDEPS) $<
+
+fft.o: ../src/fft.cpp
+	$(CXX) -c -o $@ $(CXXFLAGS) $(CPPDEPS) $<
+
+.PHONY: all install uninstall clean
+
+
+# Dependencies tracking:
+-include ./*.d
