@@ -3,7 +3,7 @@
 ** ---------------------------------------------------------------------------
 ** File:     speckgm.cpp
 ** Author:   V.Antonenko
-** Version:  $Id $
+** Version:  $Id: speckgm.cpp,v 1.2 2010/02/11 09:26:28 vladant Exp $
 ** License:  GNU
 **
 ** This application shows 2D spectrogram of raw audio files.

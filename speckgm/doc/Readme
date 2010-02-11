@@ -1,0 +1,32 @@
+
+                                   Spectrogram Viewer
+                                   ==================
+
+Spectrogram Viewer is a GUI application for visualization of the 2D spectrogtam of audio files.
+It is written in C++ using wxWidgets library (v2.8.10).
+
+Features
+--------
+
+ - 2D spectum plot;
+ - 1D amplitude/frequency plot;
+ - Time-domain signal envelope;
+
+
+Limitations
+-----------
+
+ - supports only 8kHz for now;
+ - reads only raw audio files
+
+
+Compilation
+-----------
+
+To compile in Windows put speckgm directory into wxWidgets one i.e. /wxWidgets/speckgm and
+open the build/speckgm.sln workspace by VC9 IDE.
+
+To complile in UNIXes use makefile.unx.
+
+Regards,
+V.A

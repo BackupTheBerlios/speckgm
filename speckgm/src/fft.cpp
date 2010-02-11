@@ -192,76 +192,77 @@ void dsp_rect2polar( float rex[], float imx[], unsigned size )
 
 void dsp_window( float coef[], unsigned size, int window )
 {
-	const unsigned size2 = (size-1)/2;
-	unsigned       i;
-	const float    k = 1.0f/size2;
+    const unsigned size2 = (size-1)/2;
+    unsigned       i;
+    const float    k = 1.0f/size2;
 
-    switch( window ) {
+    switch( window )
+	{
         case RECTANGULAR:
-			for( i = 0; i < size; i++ ) {
+            for( i = 0; i < size; i++ ) {
                 coef[i] = 1.0f;
-			}
+            }
             break;
-		case BARTLETT:
-			for (i = 0; i < size; i++) {
-				int n = i - size2;
-				if (n < 0) n = -n;
-				coef[i] = 1.0f - k*n;
-			}
+        case BARTLETT:
+            for (i = 0; i < size; i++) {
+                int n = i - size2;
+                if (n < 0) n = -n;
+                coef[i] = 1.0f - k*n;
+            }
             break;
         case HAMMING:
-			for( i = 0; i < size; i++ ) {
+            for( i = 0; i < size; i++ ) {
                 coef[i] = 0.54f - 0.46f*cos(PI2*i*k);
-			}
+            }
             break;
         case HANNING:
-			for( i = 0; i < size; i++ ) {
+            for( i = 0; i < size; i++ ) {
                 coef[i] = 0.5f - 0.5f*cos(PI2*i*k);
-			}
+            }
             break;
         case BLACKMAN:
-			for( i = 0; i < size; i++ ) {
+            for( i = 0; i < size; i++ ) {
                 coef[i] = 0.42f - 0.5f*cos(PI2*i*k) + 0.08f*cos(PI4*i*k);
-			}
+            }
             break;
         case WELCH:
-			for( i = 0; i < size; i++ ) {
-				int n = i - size2;
-				if (n < 0) n = -n;
+            for( i = 0; i < size; i++ ) {
+                int n = i - size2;
+                if (n < 0) n = -n;
                 coef[i] = 1.0f - sqrtf(k*n);
-			}
+            }
             break;
     }
 }
 
 void dsp_window_apply0( float rex[], float coef[], unsigned size)
 {
-	unsigned       i;
+    unsigned       i;
 
-	for (i = 0; i < size; i += 8) {
-		rex[i  ] *= coef[i  ];
-		rex[i+1] *= coef[i+1];
-		rex[i+2] *= coef[i+2];
-		rex[i+3] *= coef[i+3];
-		rex[i+4] *= coef[i+4];
-		rex[i+5] *= coef[i+5];
-		rex[i+6] *= coef[i+6];
-		rex[i+7] *= coef[i+7];
-	}
+    for (i = 0; i < size; i += 8) {
+        rex[i  ] *= coef[i  ];
+        rex[i+1] *= coef[i+1];
+        rex[i+2] *= coef[i+2];
+        rex[i+3] *= coef[i+3];
+        rex[i+4] *= coef[i+4];
+        rex[i+5] *= coef[i+5];
+        rex[i+6] *= coef[i+6];
+        rex[i+7] *= coef[i+7];
+    }
 }
 
 void dsp_window_apply( float dst[], const float src[], const float coef[], const unsigned size)
 {
-	unsigned       i;
+    unsigned       i;
 
-	for (i = 0; i < size; i += 8) {
-		dst[i  ] = src[i  ] * coef[i  ];
-		dst[i+1] = src[i+1] * coef[i+1];
-		dst[i+2] = src[i+2] * coef[i+2];
-		dst[i+3] = src[i+3] * coef[i+3];
-		dst[i+4] = src[i+4] * coef[i+4];
-		dst[i+5] = src[i+5] * coef[i+5];
-		dst[i+6] = src[i+6] * coef[i+6];
-		dst[i+7] = src[i+7] * coef[i+7];
-	}
+    for (i = 0; i < size; i += 8) {
+        dst[i  ] = src[i  ] * coef[i  ];
+        dst[i+1] = src[i+1] * coef[i+1];
+        dst[i+2] = src[i+2] * coef[i+2];
+        dst[i+3] = src[i+3] * coef[i+3];
+        dst[i+4] = src[i+4] * coef[i+4];
+        dst[i+5] = src[i+5] * coef[i+5];
+        dst[i+6] = src[i+6] * coef[i+6];
+        dst[i+7] = src[i+7] * coef[i+7];
+    }
 }

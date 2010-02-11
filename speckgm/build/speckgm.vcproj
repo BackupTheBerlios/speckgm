@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="speckgm"
 	ProjectGUID="{3D1B0761-3A64-4D55-9459-5213660957FC}"
 	TargetFrameworkVersion="0"
@@ -1579,22 +1579,18 @@
 	<References>
 	</References>
 	<Files>
-		<Filter
-			Name="Source Files"
+		<File
+			RelativePath="..\src\fft.cpp"
 			>
-			<File
-				RelativePath=".\fft.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\fft.h"
-				>
-			</File>
-			<File
-				RelativePath=".\speckgm.cpp"
-				>
-			</File>
-		</Filter>
+		</File>
+		<File
+			RelativePath="..\src\fft.h"
+			>
+		</File>
+		<File
+			RelativePath="..\src\speckgm.cpp"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
